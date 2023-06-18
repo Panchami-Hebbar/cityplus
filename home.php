@@ -43,7 +43,7 @@
                 <div class="card-body">
                     <?php echo "Welcome back ". $_SESSION['login_name']."!"  ?>
                     <hr>
-                    <h4><b>Available Blood per group in Liters</b></h4>
+                    <h4><b>Available Blood per group in ml</b></h4>
                     <div class="row">
                         <?php 
                         $blood_group = array("A+","B+","O+","AB+","A-","B-","O-","AB-");
@@ -68,7 +68,7 @@
                                     <div class="card-body text-dark">
                                         <span class="float-right summary_icon"> <?php echo $v ?> <i class="fa fa-tint text-danger"></i></span>
                                         <h4><b>
-                                            <?php echo ($bg_inn[$v] - $bg_out[$v]) / 1000 ?>
+                                            <?php echo ($bg_inn[$v] - $bg_out[$v]) ?>
                                         </b></h4>
                                     </div>
                                 </div>
