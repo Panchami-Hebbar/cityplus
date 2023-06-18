@@ -1,198 +1,59 @@
-<?php include 'db_connect.php' ?>
+<?php 
+include 'admin/db_connect.php'; 
+?>
 <style>
-   span.float-right.summary_icon {
-    font-size: 3rem;
-    position: absolute;
-    right: 1rem;
-    top: 0;
+#portfolio .img-fluid{
+    width:100%
 }
-.imgs{
-		margin: .5em;
-		max-width: calc(100%);
-		max-height: calc(100%);
-	}
-	.imgs img{
-		max-width: calc(100%);
-		max-height: calc(100%);
-		cursor: pointer;
-	}
-	#imagesCarousel,#imagesCarousel .carousel-inner,#imagesCarousel .carousel-item{
-		height: 60vh !important;background: black;
-	}
-	#imagesCarousel .carousel-item.active{
-		display: flex !important;
-	}
-	#imagesCarousel .carousel-item-next{
-		display: flex !important;
-	}
-	#imagesCarousel .carousel-item img{
-		margin: auto;
-	}
-	#imagesCarousel img{
-		width: auto!important;
-		height: auto!important;
-		max-height: calc(100%)!important;
-		max-width: calc(100%)!important;
-	}
 </style>
+        <header class="masthead">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center justify-content-center text-center">
+                    <div class="col-lg-10 align-self-end mb-4 page-title">
+                    	<h3 class="text-white">Welcome to <?php echo $_SESSION['setting_name']; ?></h3>
+                        <hr class="divider my-4" />
+                        <a class="btn btn-primary btn-xl js-scroll-trigger" href="index.php?page=doctors">Find a Doctor</a>
 
-<div class="containe-fluid">
-	<div class="row mt-3 ml-3 mr-3">
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-body">
-                    <?php echo "Welcome back ". $_SESSION['login_name']."!"  ?>
-                    <hr>
-                    <h4><b>Available Blood per group in ml</b></h4>
-                    <div class="row">
-                        <?php 
-                        $blood_group = array("A+","B+","O+","AB+","A-","B-","O-","AB-");
-                        foreach($blood_group as $v){
-                            $bg_inn[$v] = 0; 
-                            $bg_out[$v] = 0; 
-                        }
-                        $qry = $conn->query("SELECT * FROM blood_inventory ");
-                        while($row = $qry->fetch_assoc()){
-                            if($row['status'] == 1){
-                                $bg_inn[$row['blood_group']] += $row['volume'];
-                            }else{
-                                $bg_out[$row['blood_group']] += $row['volume'];
-                            }
-                        }
-
-                        ?>
-                        <?php foreach ($blood_group as $v): ?>
-                        <div class="col-md-3 mb-3">
-                            <div class="card">
-                                <div class="card-body bg-light">
-                                    <div class="card-body text-dark">
-                                        <span class="float-right summary_icon"> <?php echo $v ?> <i class="fa fa-tint text-danger"></i></span>
-                                        <h4><b>
-                                            <?php echo ($bg_inn[$v] - $bg_out[$v]) ?>
-                                        </b></h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                    </div>	
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-3 mb-3">
-                            <div class="card">
-                                <div class="card-body bg-light">
-                                    <div class="card-body text-dark">
-                                        <span class="float-right summary_icon"> <i class="fa fa-user-friends text-primary "></i></span>
-                                        <h4><b>
-                                            <?php echo $conn->query("SELECT * FROM donors")->num_rows ?>
-                                        </b></h4>
-                                        <p><b>Total Donors</b></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <div class="card">
-                                <div class="card-body bg-light">
-                                    <div class="card-body text-dark">
-                                        <span class="float-right summary_icon"> <i class="fa fa-notes-medical text-danger "></i></span>
-                                        <h4><b>
-                                            <?php echo $conn->query("SELECT * FROM blood_inventory where status = 1 and date(date_created) = '".date('Y-m-d')."' ")->num_rows ?>
-                                        </b></h4>
-                                        <p><b>Total Donated Today</b></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <div class="card">
-                                <div class="card-body bg-light">
-                                    <div class="card-body text-dark">
-                                        <span class="float-right summary_icon"> <i class="fa fa-th-list "></i></span>
-                                        <h4><b>
-                                            <?php echo $conn->query("SELECT * FROM requests where date(date_created) = '".date('Y-m-d')."' ")->num_rows ?>
-                                        </b></h4>
-                                        <p><b>Today's Requests</b></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <div class="card">
-                                <div class="card-body bg-light">
-                                    <div class="card-body text-dark">
-                                        <span class="float-right summary_icon"> <i class="fa fa-check text-primary "></i></span>
-                                        <h4><b>
-                                            <?php echo $conn->query("SELECT * FROM requests where date(date_created) = '".date('Y-m-d')."' and status = 1 ")->num_rows ?>
-                                        </b></h4>
-                                        <p><b>Today's Approved Requests</b></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-
                     
                 </div>
-            </div>      			
+            </div>
+        </header>
+	<section class="page-section" id="menu">
+        
+    </section>
+    <div id="portfolio" class="container">
+            <div class="container-fluid p-0">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                    <h2 class="mb-4">Medical Specialties</h2>
+                    <hr class="divider">
+
+                    </div>
+                </div>
+                <div class="row no-gutters">
+                    <?php
+                    $cats = $conn->query("SELECT * FROM medical_specialty order by id asc");
+                                while($row=$cats->fetch_assoc()):
+                    ?>
+                    <div class="col-lg-4 col-sm-6">
+                        <a class="portfolio-box" href="index.php?page=doctors&sid=<?php echo $row['id'] ?>">
+                            <img class="img-fluid" src="assets/img/<?php echo $row['img_path'] ?>" alt="" />
+                            <div class="portfolio-box-caption">
+                                <div class="project-name"><?php echo $row['name'] ?></div>
+                                <div class="project-category text-white">Find Doctor</div>
+                            </div>
+                        </a>
+                    </div>
+                    <?php endwhile; ?>
+                    
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-<script>
-	$('#manage-records').submit(function(e){
-        e.preventDefault()
-        start_load()
-        $.ajax({
-            url:'ajax.php?action=save_track',
-            data: new FormData($(this)[0]),
-            cache: false,
-            contentType: false,
-            processData: false,
-            method: 'POST',
-            type: 'POST',
-            success:function(resp){
-                resp=JSON.parse(resp)
-                if(resp.status==1){
-                    alert_toast("Data successfully saved",'success')
-                    setTimeout(function(){
-                        location.reload()
-                    },800)
-
-                }
-                
-            }
+    <script>
+        
+        $('.view_prod').click(function(){
+            uni_modal_right('Product','view_prod.php?id='+$(this).attr('data-id'))
         })
-    })
-    $('#tracking_id').on('keypress',function(e){
-        if(e.which == 13){
-            get_person()
-        }
-    })
-    $('#check').on('click',function(e){
-            get_person()
-    })
-    function get_person(){
-            start_load()
-        $.ajax({
-                url:'ajax.php?action=get_pdetails',
-                method:"POST",
-                data:{tracking_id : $('#tracking_id').val()},
-                success:function(resp){
-                    if(resp){
-                        resp = JSON.parse(resp)
-                        if(resp.status == 1){
-                            $('#name').html(resp.name)
-                            $('#address').html(resp.address)
-                            $('[name="person_id"]').val(resp.id)
-                            $('#details').show()
-                            end_load()
-
-                        }else if(resp.status == 2){
-                            alert_toast("Unknow tracking id.",'danger');
-                            end_load();
-                        }
-                    }
-                }
-            })
-    }
-</script>
+    </script>
+	
