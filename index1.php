@@ -50,10 +50,12 @@
 </head>
 <body>
     <h1 class="abcd",id="xyz">City Plus</h1>
-    <a href="http://localhost/bloodbank/login.php">Blood Bank</a>
+   <a href="http://localhost/bloodbank/login.php">Blood Bank</a>
 
     <a href="http://localhost/medical/login.php">Pharma</a>
     <a href="http://localhost/omos/admin/login.php">Pharma Admin</a>
+    <a href="http://localhost/doctors_appointment/admin/login.php">Doctor Admin</a>
+    <a href="http://localhost/doctors_appointment/index.php">Doctor Appointment</a>
     
 </body>
 </html>
