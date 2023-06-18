@@ -31,7 +31,7 @@ foreach($qry->fetch_array() as $k => $val){
 		</div>
 		<div class="form-group">
 			<label for="" class="control-label">Volume (ml)</label>
-			<input type="number" class="form-control text-right" step="any" name="volume"  value="<?php echo isset($volume) ? $volume :'' ?>" required>
+			<input type="number" class="form-control text-left" step="any" name="volume"  value="<?php echo isset($volume) ? $volume :'' ?>" required>
 		</div>
 		<div class="form-group">
 			<label for="" class="control-label">Date of Transfusion/Donation</label>
